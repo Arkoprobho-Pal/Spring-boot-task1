@@ -1,9 +1,9 @@
+/home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/applicationProperties/Properties.java
 /home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/controller/TrackController.java
 /home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/domain/Track.java
 /home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/exceptions/TrackAlreadyExistsException.java
 /home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/repository/TrackRepository.java
 /home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/service/TrackService.java
-/home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/config/WebConfiguration.java
 /home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/service/TrackServiceImpl.java
 /home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/exceptions/GolbalExceptions.java
 /home/cgi/Downloads/muzix/src/main/java/com/stackroute/muzix/config/SwaggerConfig.java

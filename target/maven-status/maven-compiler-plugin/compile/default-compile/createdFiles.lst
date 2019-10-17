@@ -1,5 +1,4 @@
 com/stackroute/muzix/service/TrackDummyServiceImpl.class
-com/stackroute/muzix/config/WebConfiguration.class
 com/stackroute/muzix/service/TrackServiceImpl.class
 com/stackroute/muzix/service/TrackService.class
 com/stackroute/muzix/repository/TrackRepository.class
@@ -10,6 +9,7 @@ com/stackroute/muzix/exceptions/GolbalExceptions.class
 com/stackroute/muzix/MuzixApplication.class
 com/stackroute/muzix/config/SwaggerConfig.class
 com/stackroute/muzix/exceptions/TrackAlreadyExistsException.class
+com/stackroute/muzix/applicationProperties/Properties.class
 com/stackroute/muzix/exceptions/TrackNotFoundException.class
 com/stackroute/muzix/controller/TrackController.class
 com/stackroute/muzix/seed/CommandlineSeed.class
