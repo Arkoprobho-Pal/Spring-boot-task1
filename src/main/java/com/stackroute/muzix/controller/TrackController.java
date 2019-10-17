@@ -1,6 +1,8 @@
 package com.stackroute.muzix.controller;
 
 import com.stackroute.muzix.domain.Track;
+import com.stackroute.muzix.exceptions.TrackAlreadyExistsException;
+import com.stackroute.muzix.exceptions.TrackNotFoundException;
 import com.stackroute.muzix.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,18 +22,27 @@ public class TrackController {
     public TrackController(TrackService trackService) {
         this.trackService = trackService;
     }
-
+    @GetMapping("track/find/{trackName}")
+    public ResponseEntity<?> getTrackByName( @PathVariable String trackName) {
+        try {
+            return new ResponseEntity<List<Track>>(trackService.getTrackByName(trackName), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+        }
+    }
 
 
     @PostMapping("track")
-    public ResponseEntity<?> saveTrack(@RequestBody Track track){
+    public ResponseEntity<?> saveTrack(@RequestBody Track track)throws TrackAlreadyExistsException{
         ResponseEntity responseEntity;
-        try {
+//        try {
             trackService.saveTrack(track);
             responseEntity=new ResponseEntity<String>("Successfully Track Created", HttpStatus.CREATED);
-        }catch (Exception ex){
-            responseEntity=new ResponseEntity<String >(ex.getMessage(),HttpStatus.CONFLICT);
-        }
+//        }catch (TrackAlreadyExistsException ex){
+//            responseEntity=new ResponseEntity<String >(ex.getMessage(),HttpStatus.CONFLICT);
+//        }
         return responseEntity;
     }
     @PutMapping("track")
@@ -46,19 +57,19 @@ public class TrackController {
         return responseEntity;
     }
     @RequestMapping(value = "track",method = RequestMethod.DELETE)
-    public ResponseEntity<?> removeTrack(@RequestBody  Track track){
+    public ResponseEntity<?> removeTrack(@RequestBody  Track track)throws TrackNotFoundException{
         ResponseEntity responseEntity;
-        try {
+//        try {
             trackService.removeTrack(track);
             responseEntity=new ResponseEntity<String>("Successfully Track Deleted !!", HttpStatus.CREATED);
-        }catch (Exception ex){
-            responseEntity=new ResponseEntity<String >(ex.getMessage(),HttpStatus.CONFLICT);
-        }
+//        }catch (TrackNotFoundException ex){
+//            responseEntity=new ResponseEntity<String >(ex.getMessage(),HttpStatus.CONFLICT);
+//        }
         return responseEntity;
     }
     @GetMapping("track")
-    public ResponseEntity<?> getAllTrackDetails(){
-        return new ResponseEntity<List<Track>>(trackService.getAllTrackDetails(),HttpStatus.OK);
+    public ResponseEntity<?> getAllTrackDetails()throws TrackNotFoundException{
+        return new ResponseEntity<List<Track>>((List<Track>) trackService.getAllTrackDetails(),HttpStatus.OK);
     }
 
 }

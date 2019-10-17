@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication
+//@SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
-
+@ComponentScan
 public class MuzixApplication {
 
 	public static void main(String[] args) {
