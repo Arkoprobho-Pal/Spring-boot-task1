@@ -4,19 +4,17 @@ import com.stackroute.muzix.domain.Track;
 import com.stackroute.muzix.exceptions.TrackAlreadyExistsException;
 import com.stackroute.muzix.exceptions.TrackNotFoundException;
 import com.stackroute.muzix.repository.TrackRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Primary
 @Service
-public class TrackServiceImpl implements TrackService {
-
+@Qualifier("TrackDummyServiceImpl")
+public class TrackDummyServiceImpl implements TrackService {
     private TrackRepository trackRepository;
     @Autowired
-    public TrackServiceImpl(TrackRepository trackRepository) {
+    public TrackDummyServiceImpl(TrackRepository trackRepository) {
         this.trackRepository = trackRepository;
     }
 
@@ -59,8 +57,8 @@ public class TrackServiceImpl implements TrackService {
         if(!trackRepository.existsById(track.getTrackId())){
             throw new TrackNotFoundException("Track Not Found");
         }
-         trackRepository.deleteById(track.getTrackId());
-       // trackRepository.delete(track);
+        trackRepository.deleteById(track.getTrackId());
+        // trackRepository.delete(track);
         return  track;
     }
 
