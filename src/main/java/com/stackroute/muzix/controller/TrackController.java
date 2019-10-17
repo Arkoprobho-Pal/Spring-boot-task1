@@ -5,6 +5,7 @@ import com.stackroute.muzix.exceptions.TrackAlreadyExistsException;
 import com.stackroute.muzix.exceptions.TrackNotFoundException;
 import com.stackroute.muzix.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class TrackController {
     private TrackService trackService;
 
     @Autowired
-    public TrackController(TrackService trackService) {
+    public TrackController(@Qualifier("trackServiceImpl") TrackService trackService) {
         this.trackService = trackService;
     }
     @GetMapping("track/find/{trackName}")

@@ -6,11 +6,14 @@ import com.stackroute.muzix.exceptions.TrackNotFoundException;
 import com.stackroute.muzix.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Profile("Dummy")
+@Primary//Qualifier has more preference
 @Service
-@Qualifier("TrackDummyServiceImpl")
 public class TrackDummyServiceImpl implements TrackService {
     private TrackRepository trackRepository;
     @Autowired
@@ -41,11 +44,11 @@ public class TrackDummyServiceImpl implements TrackService {
     @Override
     public Track saveTrack(Track track) throws TrackAlreadyExistsException {
         if (trackRepository.existsById(track.getTrackId())){
-            throw new TrackAlreadyExistsException("Track Already Exists");
+            throw new TrackAlreadyExistsException("Track Already Exists in Dummy");
         }
         Track savedTrack=trackRepository.save(track);
         if (savedTrack==null){
-            throw new TrackAlreadyExistsException("Track Already Exists");
+            throw new TrackAlreadyExistsException("Track Already Exists in Dummy");
         }
         return savedTrack;
     }
@@ -55,7 +58,7 @@ public class TrackDummyServiceImpl implements TrackService {
     @Override
     public Track removeTrack(Track track) throws TrackNotFoundException {
         if(!trackRepository.existsById(track.getTrackId())){
-            throw new TrackNotFoundException("Track Not Found");
+            throw new TrackNotFoundException("Track Not Found in Dummy");
         }
         trackRepository.deleteById(track.getTrackId());
         // trackRepository.delete(track);
